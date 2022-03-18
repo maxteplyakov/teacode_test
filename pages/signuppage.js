@@ -11,8 +11,10 @@ exports.SignupPage = class SignupPage {
     this.signUpBtn = page.locator('.register .btn[name="commit"]')
   }
 
+  // I had to provide waitUntill option because there were some 403 errors
+  // while loading fonts from aws servers, perhaps because of russian ip
   async goto() {
-    await this.page.goto('https://staging.paymi.com/users/sign_up');
+    await this.page.goto('https://staging.paymi.com/users/sign_up', {waitUntil: 'domcontentloaded'});
   }
 
   async fillEmailField(user_email) {
