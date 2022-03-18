@@ -1,13 +1,7 @@
-const { test, expect } = require('@playwright/test');
-const { SignupPage } = require('../pages/signuppage.js');
-const { AccountsPage } = require('../pages/accountpage.js');
-const { UserModel } = require('../models/usermodel.js'); 
+const { test, expect } = require('../fixtures/my-test.js');
 
-test('basic sign up test', async ({ page }) => {
-  const signupPage = new SignupPage(page);
-  const accountPage = new AccountsPage(page);
-  const user = new UserModel();
-  
+test('sign up smoke test', async ({ page, signupPage, accountPage, user }) => {
+
   await signupPage.goto();
   await signupPage.fillEmailField(user.email);
   await signupPage.fillPasswordField(user.password);
